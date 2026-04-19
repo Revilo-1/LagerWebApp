@@ -61,54 +61,58 @@ export default function Page() {
   const [products, setProducts] = React.useState<ProductRow[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
+  const fetchProducts = React.useCallback(async () => {
+    const { data, error } = await supabaseClient
+      .from("products")
+      .select("id,name,category,added_date,cost_price,estimated_value,sold_price,status,description")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("[supabase] Failed to load products", error);
+      return;
+    }
+
+    setProducts((data as ProductDbRow[]).map(mapDbRowToProduct));
+  }, []);
+
   React.useEffect(() => {
     let isMounted = true;
 
-    async function loadProducts() {
-      const { data, error } = await supabaseClient
-        .from("products")
-        .select("id,name,category,added_date,cost_price,estimated_value,sold_price,status,description")
-        .order("created_at", { ascending: false });
-
-      if (error) {
-        console.error("[supabase] Failed to load products", error);
-      } else if (data && isMounted) {
-        setProducts((data as ProductDbRow[]).map(mapDbRowToProduct));
-      }
+    async function loadInitialProducts() {
+      await fetchProducts();
 
       if (isMounted) {
         setIsLoading(false);
       }
     }
 
-    loadProducts();
+    loadInitialProducts();
 
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [fetchProducts]);
 
   async function handleAddProduct(product: ProductRow) {
-    setProducts((prev) => [product, ...prev]);
-
     const { error } = await supabaseClient.from("products").insert(mapProductToDbRow(product));
 
     if (error) {
       console.error("[supabase] Failed to add product", error);
-      setProducts((prev) => prev.filter((p) => p.id !== product.id));
+      return;
     }
+
+    await fetchProducts();
   }
 
   async function handleDeleteProduct(id: string) {
-    const previous = products;
-    setProducts((prev) => prev.filter((p) => p.id !== id));
-
     const { error } = await supabaseClient.from("products").delete().eq("id", id);
 
     if (error) {
       console.error("[supabase] Failed to delete product", error);
-      setProducts(previous);
+      return;
     }
+
+    await fetchProducts();
   }
 
   return (
