@@ -71,7 +71,7 @@ export default async function Layout({ children }: Readonly<{ children: ReactNod
                   href="https://github.com/arhamkhnz/next-shadcn-admin-dashboard"
                   target="_blank"
                   rel="noreferrer"
-                  aria-label="Open GitHub repository"
+                  aria-label="Aabn GitHub-repositorium"
                 >
                   <SimpleIcon icon={siGithub} className="fill-primary-foreground" />
                 </Link>

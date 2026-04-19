@@ -1,6 +1,7 @@
 "use client";
 
 import { addHours, endOfToday, format, parseISO, subHours } from "date-fns";
+import { da } from "date-fns/locale";
 import { Area, CartesianGrid, ComposedChart, Line, XAxis } from "recharts";
 
 import { Button } from "@/components/ui/button";
@@ -216,15 +217,15 @@ const chartData = chartValues.map((point, index) => ({
 
 const chartConfig = {
   newCustomers: {
-    label: "New Customers",
+    label: "Nye kunder",
     color: "var(--chart-1)",
   },
   activeAccounts: {
-    label: "Active Accounts",
+    label: "Aktive konti",
     color: "var(--chart-2)",
   },
   returningUsers: {
-    label: "Returning Users",
+    label: "Tilbagevendende brugere",
     color: "var(--chart-3)",
   },
 } satisfies ChartConfig;
@@ -233,40 +234,40 @@ export function PerformanceOverview() {
   return (
     <Card className="@container/card">
       <CardHeader>
-        <CardTitle className="leading-none">Customer Activity</CardTitle>
+        <CardTitle className="leading-none">Kundeaktivitet</CardTitle>
         <CardDescription>
-          <span className="@[540px]/card:block hidden">Customer activity for the last 3 months</span>
-          <span className="@[540px]/card:hidden">Last 3 months</span>
+          <span className="@[540px]/card:block hidden">Kundeaktivitet for de sidste 3 maaneder</span>
+          <span className="@[540px]/card:hidden">Sidste 3 maaneder</span>
         </CardDescription>
         <CardAction className="flex items-center gap-2">
           <Select defaultValue="quarter">
             <SelectTrigger size="sm" className="w-28">
-              <SelectValue placeholder="3 months" />
+              <SelectValue placeholder="3 maaneder" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Period</SelectLabel>
-                <SelectItem value="quarter">3 months</SelectItem>
+                <SelectLabel>Periode</SelectLabel>
+                <SelectItem value="quarter">3 maaneder</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
 
           <Select defaultValue="all">
             <SelectTrigger size="sm" className="w-32">
-              <SelectValue placeholder="All segments" />
+              <SelectValue placeholder="Alle segmenter" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Segments</SelectLabel>
-                <SelectItem value="all">All segments</SelectItem>
-                <SelectItem value="paid">Paid</SelectItem>
-                <SelectItem value="organic">Organic</SelectItem>
+                <SelectLabel>Segmenter</SelectLabel>
+                <SelectItem value="all">Alle segmenter</SelectItem>
+                <SelectItem value="paid">Betalt</SelectItem>
+                <SelectItem value="organic">Organisk</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
 
           <Button variant="outline" size="sm">
-            View report
+            Se rapport
           </Button>
         </CardAction>
       </CardHeader>
@@ -289,7 +290,7 @@ export function PerformanceOverview() {
               tickMargin={8}
               minTickGap={48}
               tickFormatter={(value) =>
-                parseISO(value).toLocaleDateString("en-US", {
+                parseISO(value).toLocaleDateString("da-DK", {
                   month: "short",
                   day: "numeric",
                 })
@@ -302,7 +303,7 @@ export function PerformanceOverview() {
                 <ChartTooltipContent
                   className="w-50"
                   indicator="line"
-                  labelFormatter={(value) => format(parseISO(value), "d MMMM yyyy")}
+                  labelFormatter={(value) => format(parseISO(value), "d MMMM yyyy", { locale: da })}
                 />
               }
             />

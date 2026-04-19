@@ -2,6 +2,17 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { dashboardWidgetRegistry } from "@/widgets";
 
+const CATEGORY_TITLES: Record<string, string> = {
+  metrics: "Metrikker",
+  chart: "Graf",
+  table: "Tabel",
+};
+
+const SIZE_TITLES: Record<string, string> = {
+  full: "Fuld bredde",
+  half: "Halv bredde",
+};
+
 function toTitle(value: string) {
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
@@ -18,7 +29,7 @@ export default function Page() {
     <div className="@container/main flex flex-col gap-4 md:gap-6">
       <Card>
         <CardHeader>
-          <CardTitle className="leading-none">Element Library</CardTitle>
+          <CardTitle className="leading-none">Elementbibliotek</CardTitle>
           <CardDescription>Central oversigt over genbrugelige dashboard-elementer.</CardDescription>
         </CardHeader>
         <CardContent className="pt-0">
@@ -30,9 +41,9 @@ export default function Page() {
                   <CardDescription>{widget.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex items-center gap-2 pt-0">
-                  <Badge variant="secondary">{toTitle(widget.category)}</Badge>
+                  <Badge variant="secondary">{CATEGORY_TITLES[widget.category] ?? toTitle(widget.category)}</Badge>
                   <Badge variant="outline">{toTitle(widget.dashboard)}</Badge>
-                  <Badge variant="outline">{toTitle(widget.size)}</Badge>
+                  <Badge variant="outline">{SIZE_TITLES[widget.size] ?? toTitle(widget.size)}</Badge>
                 </CardContent>
               </Card>
             ))}

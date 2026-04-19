@@ -7,8 +7,8 @@ export const dashboardWidgetRegistry = {
   "default.metric-cards": {
     meta: {
       id: "default.metric-cards",
-      label: "Metric Cards",
-      description: "Top-level revenue and growth metrics.",
+      label: "Metrikkort",
+      description: "Overblik over omsaetning og vaekst.",
       category: "metrics",
       size: "full",
     },
@@ -17,8 +17,8 @@ export const dashboardWidgetRegistry = {
   "default.performance-overview": {
     meta: {
       id: "default.performance-overview",
-      label: "Performance Overview",
-      description: "Customer activity chart for the selected period.",
+      label: "Performanceoversigt",
+      description: "Kundeaktivitet for den valgte periode.",
       category: "chart",
       size: "full",
     },
@@ -27,8 +27,8 @@ export const dashboardWidgetRegistry = {
   "default.subscriber-overview": {
     meta: {
       id: "default.subscriber-overview",
-      label: "Subscriber Overview",
-      description: "Recent customers table and export action.",
+      label: "Kundeoversigt",
+      description: "Seneste kunder med mulighed for eksport.",
       category: "table",
       size: "full",
     },

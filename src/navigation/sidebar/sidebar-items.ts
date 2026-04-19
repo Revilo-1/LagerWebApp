@@ -48,10 +48,10 @@ export interface NavGroup {
 export const sidebarItems: NavGroup[] = [
   {
     id: 1,
-    label: "Dashboards",
+    label: "Oversigter",
     items: [
       {
-        title: "Default",
+        title: "Standard",
         url: "/dashboard/default",
         icon: LayoutDashboard,
       },
@@ -61,12 +61,12 @@ export const sidebarItems: NavGroup[] = [
         icon: ChartBar,
       },
       {
-        title: "Finance",
+        title: "Finans",
         url: "/dashboard/finance",
         icon: Banknote,
       },
       {
-        title: "Analytics",
+        title: "Analyse",
         url: "/dashboard/analytics",
         icon: Gauge,
       },
@@ -76,19 +76,19 @@ export const sidebarItems: NavGroup[] = [
       //   icon: Kanban,
       // },
       {
-        title: "E-commerce",
+        title: "E-handel",
         url: "/dashboard/coming-soon",
         icon: ShoppingBag,
         comingSoon: true,
       },
       {
-        title: "Academy",
+        title: "Akademi",
         url: "/dashboard/coming-soon",
         icon: GraduationCap,
         comingSoon: true,
       },
       {
-        title: "Logistics",
+        title: "Logistik",
         url: "/dashboard/coming-soon",
         icon: Forklift,
         comingSoon: true,
@@ -97,16 +97,16 @@ export const sidebarItems: NavGroup[] = [
   },
   {
     id: 2,
-    label: "Pages",
+    label: "Sider",
     items: [
       {
-        title: "Email",
+        title: "E-mail",
         url: "/dashboard/coming-soon",
         icon: Mail,
         comingSoon: true,
       },
       {
-        title: "Elements",
+        title: "Elementer",
         url: "/dashboard/elements",
         icon: Database,
       },
@@ -122,7 +122,7 @@ export const sidebarItems: NavGroup[] = [
         comingSoon: true,
       },
       {
-        title: "Calendar",
+        title: "Kalender",
         url: "/dashboard/coming-soon",
         icon: Calendar,
         comingSoon: true,
@@ -134,53 +134,53 @@ export const sidebarItems: NavGroup[] = [
         comingSoon: true,
       },
       {
-        title: "Invoice",
+        title: "Faktura",
         url: "/dashboard/coming-soon",
         icon: ReceiptText,
         comingSoon: true,
       },
       {
-        title: "Users",
+        title: "Brugere",
         url: "/dashboard/coming-soon",
         icon: Users,
         comingSoon: true,
       },
       {
-        title: "Roles",
+        title: "Roller",
         url: "/dashboard/coming-soon",
         icon: Lock,
         comingSoon: true,
       },
       {
-        title: "Authentication",
+        title: "Godkendelse",
         url: "/auth",
         icon: Fingerprint,
         subItems: [
-          { title: "Login v1", url: "/auth/v1/login", newTab: true },
-          { title: "Login v2", url: "/auth/v2/login", newTab: true },
-          { title: "Register v1", url: "/auth/v1/register", newTab: true },
-          { title: "Register v2", url: "/auth/v2/register", newTab: true },
+          { title: "Log ind v1", url: "/auth/v1/login", newTab: true },
+          { title: "Log ind v2", url: "/auth/v2/login", newTab: true },
+          { title: "Registrer v1", url: "/auth/v1/register", newTab: true },
+          { title: "Registrer v2", url: "/auth/v2/register", newTab: true },
         ],
       },
     ],
   },
   {
     id: 3,
-    label: "Legacy",
+    label: "Aeldre",
     items: [
       {
-        title: "Dashboards",
+        title: "Oversigter",
         url: "/dashboard/default-v1",
-        subItems: [{ title: "Default V1", url: "/dashboard/default-v1" }],
+        subItems: [{ title: "Standard V1", url: "/dashboard/default-v1" }],
       },
     ],
   },
   {
     id: 4,
-    label: "Misc",
+    label: "Diverse",
     items: [
       {
-        title: "Others",
+        title: "Andet",
         url: "/dashboard/coming-soon",
         icon: SquareArrowUpRight,
         comingSoon: true,
