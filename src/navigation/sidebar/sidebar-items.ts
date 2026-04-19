@@ -2,6 +2,7 @@ import {
   Banknote,
   Calendar,
   ChartBar,
+  Database,
   Fingerprint,
   Forklift,
   Gauge,
@@ -102,6 +103,11 @@ export const sidebarItems: NavGroup[] = [
         url: "/dashboard/coming-soon",
         icon: Mail,
         comingSoon: true,
+      },
+      {
+        title: "Elements",
+        url: "/dashboard/elements",
+        icon: Database,
       },
       {
         title: "Chat",
