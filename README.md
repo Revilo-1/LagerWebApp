@@ -112,6 +112,32 @@ _Deploy your own copy with one click._
 
 Your app will be running at [http://localhost:3000](http://localhost:3000)
 
+### Supabase Setup
+
+This project supports Supabase for inventory data.
+
+1. **Create local environment file**
+   ```bash
+   cp .env.example .env.local
+   ```
+
+2. **Set the required variables**
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=...
+   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=...
+   ```
+
+3. **Create the products table**
+   Run the SQL in:
+   `supabase/migrations/20260419_create_products.sql`
+
+4. **Vercel**
+   Add the same two environment variables in your Vercel project settings:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
+
+   Then redeploy so production picks up the new values.
+
 ### Formatting and Linting
 
 Format, lint, and organize imports

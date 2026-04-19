@@ -2,25 +2,120 @@
 
 import * as React from "react";
 
+import { supabaseClient } from "@/lib/supabase/client";
+
 import { InventoryMetricCards } from "./_components/inventory-metric-cards";
 import { InventoryTable } from "./_components/inventory-table";
 import type { ProductRow } from "./_components/schema";
 
-export default function Page() {
-  const [products, setProducts] = React.useState<ProductRow[]>([]);
+type ProductDbRow = {
+  id: string;
+  name: string;
+  category: string;
+  added_date: string;
+  cost_price: number | string | null;
+  estimated_value: number | string;
+  sold_price: number | string | null;
+  status: string;
+  description: string;
+};
 
-  function handleAddProduct(product: ProductRow) {
-    setProducts((prev) => [product, ...prev]);
+function toNumber(value: number | string | null | undefined): number | undefined {
+  if (value === null || value === undefined) {
+    return undefined;
   }
 
-  function handleDeleteProduct(id: string) {
+  const parsed = typeof value === "number" ? value : Number(value);
+  return Number.isNaN(parsed) ? undefined : parsed;
+}
+
+function mapDbRowToProduct(row: ProductDbRow): ProductRow {
+  return {
+    id: row.id,
+    name: row.name,
+    category: row.category,
+    addedDate: row.added_date,
+    costPrice: toNumber(row.cost_price),
+    estimatedValue: toNumber(row.estimated_value) ?? 0,
+    soldPrice: toNumber(row.sold_price),
+    status: row.status === "Solgt" ? "Solgt" : "Opslåt",
+    description: row.description,
+  };
+}
+
+function mapProductToDbRow(product: ProductRow): ProductDbRow {
+  return {
+    id: product.id,
+    name: product.name,
+    category: product.category,
+    added_date: product.addedDate,
+    cost_price: product.costPrice ?? null,
+    estimated_value: product.estimatedValue,
+    sold_price: product.soldPrice ?? null,
+    status: product.status,
+    description: product.description,
+  };
+}
+
+export default function Page() {
+  const [products, setProducts] = React.useState<ProductRow[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    let isMounted = true;
+
+    async function loadProducts() {
+      const { data, error } = await supabaseClient
+        .from("products")
+        .select("id,name,category,added_date,cost_price,estimated_value,sold_price,status,description")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("[supabase] Failed to load products", error);
+      } else if (data && isMounted) {
+        setProducts((data as ProductDbRow[]).map(mapDbRowToProduct));
+      }
+
+      if (isMounted) {
+        setIsLoading(false);
+      }
+    }
+
+    loadProducts();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  async function handleAddProduct(product: ProductRow) {
+    setProducts((prev) => [product, ...prev]);
+
+    const { error } = await supabaseClient.from("products").insert(mapProductToDbRow(product));
+
+    if (error) {
+      console.error("[supabase] Failed to add product", error);
+      setProducts((prev) => prev.filter((p) => p.id !== product.id));
+    }
+  }
+
+  async function handleDeleteProduct(id: string) {
+    const previous = products;
     setProducts((prev) => prev.filter((p) => p.id !== id));
+
+    const { error } = await supabaseClient.from("products").delete().eq("id", id);
+
+    if (error) {
+      console.error("[supabase] Failed to delete product", error);
+      setProducts(previous);
+    }
   }
 
   return (
     <div className="@container/main flex flex-col gap-4 md:gap-6">
       <InventoryMetricCards products={products} />
       <InventoryTable products={products} onAddProduct={handleAddProduct} onDeleteProduct={handleDeleteProduct} />
+      {isLoading ? <p className="text-muted-foreground text-sm">Indlæser produkter...</p> : null}
     </div>
   );
 }
