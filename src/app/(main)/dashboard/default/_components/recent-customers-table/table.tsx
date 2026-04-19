@@ -44,28 +44,28 @@ import { recentCustomersColumns } from "./columns";
 import type { RecentCustomerRow } from "./schema";
 
 const statusOptions = [
-  { value: "all", label: "All" },
-  { value: "Subscribed", label: "Subscribed" },
-  { value: "Inactive", label: "Inactive" },
-  { value: "Unsubscribed", label: "Unsubscribed" },
+  { value: "all", label: "Alle" },
+  { value: "Subscribed", label: "Aktiv" },
+  { value: "Inactive", label: "Inaktiv" },
+  { value: "Unsubscribed", label: "Afmeldt" },
 ] as const;
 const billingOptions = [
-  { value: "all", label: "All" },
-  { value: "Paid", label: "Paid" },
-  { value: "Pending", label: "Pending" },
-  { value: "Overdue", label: "Overdue" },
-  { value: "Trial", label: "Trial" },
+  { value: "all", label: "Alle" },
+  { value: "Paid", label: "Betalt" },
+  { value: "Pending", label: "Afventer" },
+  { value: "Overdue", label: "Forfalden" },
+  { value: "Trial", label: "Proeve" },
 ] as const;
 const joinedDateOptions = [
-  { value: "all", label: "All time" },
-  { value: "30", label: "Last 30 days" },
-  { value: "90", label: "Last 90 days" },
+  { value: "all", label: "Hele perioden" },
+  { value: "30", label: "Seneste 30 dage" },
+  { value: "90", label: "Seneste 90 dage" },
 ] as const;
 const sortOptions = [
-  { value: "newest", label: "Newest first" },
-  { value: "oldest", label: "Oldest first" },
-  { value: "name-asc", label: "Name A-Z" },
-  { value: "name-desc", label: "Name Z-A" },
+  { value: "newest", label: "Nyeste foerst" },
+  { value: "oldest", label: "Aeldste foerst" },
+  { value: "name-asc", label: "Navn A-Z" },
+  { value: "name-desc", label: "Navn Z-A" },
 ] as const;
 
 export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
@@ -127,7 +127,7 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
             <Search className="pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               className="h-7 rounded-[min(var(--radius-md),12px)] pl-8"
-              placeholder="Search customers..."
+              placeholder="Soeg kunder..."
               value={searchQuery}
               onChange={(event) => {
                 table.getColumn("search")?.setFilterValue(event.target.value || undefined);
@@ -162,7 +162,7 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="sm">
                 <CalendarDays />
-                Joined date
+                Oprettelsesdato
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-40" align="start">
@@ -187,7 +187,7 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="sm">
                 <CreditCard />
-                Billing
+                Betaling
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -210,7 +210,7 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="sm">
                 <ArrowUpDown />
-                Sort
+                Sorter
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -268,7 +268,7 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
             ) : (
               <TableRow>
                 <TableCell colSpan={table.getVisibleLeafColumns().length} className="h-24 text-center">
-                  No results.
+                  Ingen resultater.
                 </TableCell>
               </TableRow>
             )}
@@ -278,13 +278,12 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
 
       <div className="flex items-center justify-between px-1">
         <div className="hidden flex-1 text-muted-foreground text-sm lg:flex">
-          {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s)
-          selected.
+          {table.getFilteredSelectedRowModel().rows.length} af {table.getFilteredRowModel().rows.length} raekker valgt.
         </div>
         <div className="flex w-full items-center gap-8 lg:w-fit">
           <div className="hidden items-center gap-2 lg:flex">
             <Label htmlFor="recent-customers-rows-per-page" className="font-medium text-sm">
-              Rows per page
+              Raekker pr. side
             </Label>
             <Select
               value={`${table.getState().pagination.pageSize}`}
@@ -307,7 +306,7 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
             </Select>
           </div>
           <div className="flex w-fit items-center justify-center font-medium text-sm">
-            Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+            Side {table.getState().pagination.pageIndex + 1} af {table.getPageCount()}
           </div>
           <div className="ml-auto flex items-center gap-2 lg:ml-0">
             <Button
@@ -317,7 +316,7 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
               onClick={() => table.setPageIndex(0)}
               disabled={!table.getCanPreviousPage()}
             >
-              <span className="sr-only">Go to first page</span>
+              <span className="sr-only">Gaa til foerste side</span>
               <ChevronsLeft className="size-4" />
             </Button>
             <Button
@@ -327,7 +326,7 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
             >
-              <span className="sr-only">Go to previous page</span>
+              <span className="sr-only">Gaa til forrige side</span>
               <ChevronLeft className="size-4" />
             </Button>
             <Button
@@ -337,7 +336,7 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
             >
-              <span className="sr-only">Go to next page</span>
+              <span className="sr-only">Gaa til naeste side</span>
               <ChevronRight className="size-4" />
             </Button>
             <Button
@@ -347,7 +346,7 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
               onClick={() => table.setPageIndex(table.getPageCount() - 1)}
               disabled={!table.getCanNextPage()}
             >
-              <span className="sr-only">Go to last page</span>
+              <span className="sr-only">Gaa til sidste side</span>
               <ChevronsRight className="size-4" />
             </Button>
           </div>

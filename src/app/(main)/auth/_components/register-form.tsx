@@ -11,12 +11,12 @@ import { Input } from "@/components/ui/input";
 
 const formSchema = z
   .object({
-    email: z.string().email({ message: "Please enter a valid email address." }),
-    password: z.string().min(6, { message: "Password must be at least 6 characters." }),
-    confirmPassword: z.string().min(6, { message: "Confirm Password must be at least 6 characters." }),
+    email: z.string().email({ message: "Indtast en gyldig e-mailadresse." }),
+    password: z.string().min(6, { message: "Adgangskoden skal vaere mindst 6 tegn." }),
+    confirmPassword: z.string().min(6, { message: "Bekraeft adgangskoden med mindst 6 tegn." }),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match.",
+    message: "Adgangskoderne matcher ikke.",
     path: ["confirmPassword"],
   });
 
@@ -31,7 +31,7 @@ export function RegisterForm() {
   });
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    toast("You submitted the following values", {
+    toast("Du indsendte foelgende vaerdier", {
       description: (
         <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
@@ -48,12 +48,12 @@ export function RegisterForm() {
           name="email"
           render={({ field, fieldState }) => (
             <Field className="gap-1.5" data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="register-email">Email Address</FieldLabel>
+              <FieldLabel htmlFor="register-email">E-mailadresse</FieldLabel>
               <Input
                 {...field}
                 id="register-email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder="dig@eksempel.dk"
                 autoComplete="email"
                 aria-invalid={fieldState.invalid}
               />
@@ -66,7 +66,7 @@ export function RegisterForm() {
           name="password"
           render={({ field, fieldState }) => (
             <Field className="gap-1.5" data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="register-password">Password</FieldLabel>
+              <FieldLabel htmlFor="register-password">Adgangskode</FieldLabel>
               <Input
                 {...field}
                 id="register-password"
@@ -84,7 +84,7 @@ export function RegisterForm() {
           name="confirmPassword"
           render={({ field, fieldState }) => (
             <Field className="gap-1.5" data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="register-confirm-password">Confirm Password</FieldLabel>
+              <FieldLabel htmlFor="register-confirm-password">Bekraeft adgangskode</FieldLabel>
               <Input
                 {...field}
                 id="register-confirm-password"
@@ -99,7 +99,7 @@ export function RegisterForm() {
         />
       </FieldGroup>
       <Button className="w-full" type="submit">
-        Register
+        Opret bruger
       </Button>
     </form>
   );

@@ -6,17 +6,17 @@ import { formatCurrency } from "@/lib/utils";
 const expenses = [
   {
     key: "housing",
-    label: "Housing",
+    label: "Bolig",
     amount: 1650,
   },
   {
     key: "utilities",
-    label: "Utilities",
+    label: "Forsyning",
     amount: 420,
   },
   {
     key: "groceries",
-    label: "Groceries",
+    label: "Dagligvarer",
     amount: 560,
   },
   {
@@ -26,17 +26,17 @@ const expenses = [
   },
   {
     key: "subscriptions",
-    label: "Subscriptions",
+    label: "Abonnementer",
     amount: 260,
   },
   {
     key: "healthcare",
-    label: "Healthcare",
+    label: "Sundhed",
     amount: 390,
   },
   {
     key: "other",
-    label: "Other",
+    label: "Andet",
     amount: 980,
   },
 ];
@@ -46,8 +46,8 @@ export function SpendingBreakdown() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Spending Breakdown</CardTitle>
-        <CardDescription>Expense distribution by category.</CardDescription>
+        <CardTitle>Udgiftsfordeling</CardTitle>
+        <CardDescription>Fordeling af udgifter pr. kategori.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-1">

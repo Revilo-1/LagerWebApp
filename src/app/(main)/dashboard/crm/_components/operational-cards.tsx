@@ -17,7 +17,7 @@ export function OperationalCards() {
     <div className="grid grid-cols-1 gap-4 *:data-[slot=card]:shadow-xs sm:grid-cols-2 xl:grid-cols-3">
       <Card>
         <CardHeader>
-          <CardTitle>Sales Pipeline</CardTitle>
+          <CardTitle>Salgspipeline</CardTitle>
         </CardHeader>
         <CardContent className="size-full">
           <ChartContainer config={salesPipelineChartConfig} className="size-full">
@@ -30,13 +30,13 @@ export function OperationalCards() {
           </ChartContainer>
         </CardContent>
         <CardFooter>
-          <p className="text-muted-foreground text-xs">Leads increased by 18.2% since last month.</p>
+          <p className="text-muted-foreground text-xs">Leads steg med 18,2% siden sidste maaned.</p>
         </CardFooter>
       </Card>
 
       <Card>
         <CardHeader>
-          <CardTitle>Sales by Region</CardTitle>
+          <CardTitle>Salg pr. region</CardTitle>
           <CardDescription className="font-medium tabular-nums">
             {formatCurrency(totalSales, { noDecimals: true })}
           </CardDescription>
@@ -71,16 +71,16 @@ export function OperationalCards() {
         </CardContent>
         <CardFooter>
           <div className="flex justify-between gap-1 text-muted-foreground text-xs">
-            <span>{regionSalesData.length} regions tracked</span>
+            <span>{regionSalesData.length} regioner spores</span>
             <span>•</span>
-            <span>{regionSalesData.filter((r) => r.isPositive).length} regions growing</span>
+            <span>{regionSalesData.filter((r) => r.isPositive).length} regioner vokser</span>
           </div>
         </CardFooter>
       </Card>
 
       <Card>
         <CardHeader>
-          <CardTitle>Action Items</CardTitle>
+          <CardTitle>Handlinger</CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="space-y-2.5">
@@ -92,9 +92,9 @@ export function OperationalCards() {
                   <span
                     className={cn(
                       "w-fit rounded-md px-2 py-1 font-medium text-xs",
-                      item.priority === "High" && "bg-destructive/20 text-destructive",
-                      item.priority === "Medium" && "bg-yellow-500/20 text-yellow-500",
-                      item.priority === "Low" && "bg-green-500/20 text-green-500",
+                      item.priority === "Hoj" && "bg-destructive/20 text-destructive",
+                      item.priority === "Mellem" && "bg-yellow-500/20 text-yellow-500",
+                      item.priority === "Lav" && "bg-green-500/20 text-green-500",
                     )}
                   >
                     {item.priority}

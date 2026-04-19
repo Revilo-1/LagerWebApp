@@ -11,8 +11,8 @@ import { Field, FieldContent, FieldError, FieldGroup, FieldLabel } from "@/compo
 import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  password: z.string().min(6, { message: "Password must be at least 6 characters." }),
+  email: z.string().email({ message: "Indtast en gyldig e-mailadresse." }),
+  password: z.string().min(6, { message: "Adgangskoden skal vaere mindst 6 tegn." }),
   remember: z.boolean().optional(),
 });
 
@@ -27,7 +27,7 @@ export function LoginForm() {
   });
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    toast("You submitted the following values", {
+    toast("Du indsendte foelgende vaerdier", {
       description: (
         <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
@@ -44,12 +44,12 @@ export function LoginForm() {
           name="email"
           render={({ field, fieldState }) => (
             <Field className="gap-1.5" data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="login-email">Email Address</FieldLabel>
+              <FieldLabel htmlFor="login-email">E-mailadresse</FieldLabel>
               <Input
                 {...field}
                 id="login-email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder="dig@eksempel.dk"
                 autoComplete="email"
                 aria-invalid={fieldState.invalid}
               />
@@ -62,7 +62,7 @@ export function LoginForm() {
           name="password"
           render={({ field, fieldState }) => (
             <Field className="gap-1.5" data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="login-password">Password</FieldLabel>
+              <FieldLabel htmlFor="login-password">Adgangskode</FieldLabel>
               <Input
                 {...field}
                 id="login-password"
@@ -89,7 +89,7 @@ export function LoginForm() {
               />
               <FieldContent>
                 <FieldLabel htmlFor="login-remember" className="font-normal">
-                  Remember me for 30 days
+                  Husk mig i 30 dage
                 </FieldLabel>
                 {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
               </FieldContent>
@@ -98,7 +98,7 @@ export function LoginForm() {
         />
       </FieldGroup>
       <Button className="w-full" type="submit">
-        Login
+        Log ind
       </Button>
     </form>
   );

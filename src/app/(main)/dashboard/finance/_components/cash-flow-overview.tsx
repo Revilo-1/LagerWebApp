@@ -26,11 +26,11 @@ const chartData = [
 
 const chartConfig = {
   income: {
-    label: "Income",
+    label: "Indkomst",
     color: "var(--chart-1)",
   },
   expenses: {
-    label: "Expenses",
+    label: "Udgifter",
     color: "var(--chart-2)",
   },
 } as ChartConfig;
@@ -41,19 +41,19 @@ export function CashFlowOverview() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Cash Flow Overview</CardTitle>
-        <CardDescription>Monthly income and expenses with net cash impact.</CardDescription>
+        <CardTitle>Likviditetsoversigt</CardTitle>
+        <CardDescription>Maanedlig indkomst og udgifter med nettoeffekt.</CardDescription>
         <CardAction>
           <Select defaultValue="this-year">
             <SelectTrigger size="sm" className="w-37">
-              <SelectValue placeholder="Select period" />
+              <SelectValue placeholder="Vaelg periode" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="this-month">This Month</SelectItem>
-                <SelectItem value="last-6-months">Last 6 Months</SelectItem>
-                <SelectItem value="ytd">Year to Date</SelectItem>
-                <SelectItem value="this-year">This Year</SelectItem>
+                <SelectItem value="this-month">Denne maaned</SelectItem>
+                <SelectItem value="last-6-months">Seneste 6 maaneder</SelectItem>
+                <SelectItem value="ytd">Aar til dato</SelectItem>
+                <SelectItem value="this-year">Dette aar</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -67,7 +67,7 @@ export function CashFlowOverview() {
               <ArrowDownLeft className="size-6 stroke-background" />
             </div>
             <div>
-              <p className="text-muted-foreground text-xs uppercase">Income</p>
+              <p className="text-muted-foreground text-xs uppercase">Indkomst</p>
               <p className="font-medium tabular-nums">{formatCurrency(totalIncome, { noDecimals: true })}</p>
             </div>
           </div>
@@ -77,7 +77,7 @@ export function CashFlowOverview() {
               <ArrowUpRight className="size-6 stroke-background" />
             </div>
             <div>
-              <p className="text-muted-foreground text-xs uppercase">Expenses</p>
+              <p className="text-muted-foreground text-xs uppercase">Udgifter</p>
               <p className="font-medium tabular-nums">{formatCurrency(totalExpenses, { noDecimals: true })}</p>
             </div>
           </div>

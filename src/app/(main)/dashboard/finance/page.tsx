@@ -14,15 +14,15 @@ export default function Page() {
     <div>
       <Tabs className="gap-4" defaultValue="overview">
         <TabsList>
-          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="overview">Overblik</TabsTrigger>
           <TabsTrigger disabled value="activity">
-            Activity
+            Aktivitet
           </TabsTrigger>
           <TabsTrigger disabled value="insights">
-            Insights
+            Indsigter
           </TabsTrigger>
           <TabsTrigger disabled value="utilities">
-            Utilities
+            Vaerktoej
           </TabsTrigger>
         </TabsList>
 

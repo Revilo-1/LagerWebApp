@@ -43,11 +43,11 @@ import type { RecentLeadRow } from "./schema";
 
 const COLUMN_LABELS: Record<string, string> = {
   id: "Ref",
-  name: "Name",
-  company: "Company",
+  name: "Navn",
+  company: "Virksomhed",
   status: "Status",
-  source: "Source",
-  lastActivity: "Last Activity",
+  source: "Kilde",
+  lastActivity: "Sidste aktivitet",
 };
 
 export function RecentLeadsTable({ data }: { data: RecentLeadRow[] }) {
@@ -82,20 +82,20 @@ export function RecentLeadsTable({ data }: { data: RecentLeadRow[] }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Recent Leads</CardTitle>
-        <CardDescription>Track and manage your latest leads and their status.</CardDescription>
+        <CardTitle>Seneste leads</CardTitle>
+        <CardDescription>Spor og haandter dine nyeste leads og deres status.</CardDescription>
         <CardAction>
           <div className="flex items-center gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm">
                   <Settings2 data-icon="inline-start" />
-                  View
+                  Vis
                   <ChevronDownIcon data-icon="inline-end" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-36">
-                <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
+                <DropdownMenuLabel>Vis kolonner</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   {table
@@ -115,7 +115,7 @@ export function RecentLeadsTable({ data }: { data: RecentLeadRow[] }) {
             </DropdownMenu>
             <Button variant="outline" size="sm">
               <Download data-icon="inline-start" />
-              <span className="hidden lg:inline">Export</span>
+              <span className="hidden lg:inline">Eksporter</span>
             </Button>
           </div>
         </CardAction>
@@ -146,7 +146,7 @@ export function RecentLeadsTable({ data }: { data: RecentLeadRow[] }) {
               ) : (
                 <TableRow>
                   <TableCell colSpan={table.getVisibleLeafColumns().length} className="h-24 text-center">
-                    No results.
+                    Ingen resultater.
                   </TableCell>
                 </TableRow>
               )}
@@ -155,13 +155,13 @@ export function RecentLeadsTable({ data }: { data: RecentLeadRow[] }) {
         </div>
         <div className="flex items-center justify-between gap-4">
           <div className="hidden flex-1 text-muted-foreground text-sm lg:flex">
-            {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s)
-            selected.
+            {table.getFilteredSelectedRowModel().rows.length} af {table.getFilteredRowModel().rows.length} raekker
+            valgt.
           </div>
           <div className="flex w-full items-center gap-8 lg:w-fit">
             <div className="hidden items-center gap-2 lg:flex">
               <Label htmlFor="recent-leads-rows-per-page" className="font-medium text-sm">
-                Rows per page
+                Raekker pr. side
               </Label>
               <Select
                 value={`${table.getState().pagination.pageSize}`}
@@ -184,7 +184,7 @@ export function RecentLeadsTable({ data }: { data: RecentLeadRow[] }) {
               </Select>
             </div>
             <div className="flex w-fit items-center justify-center font-medium text-sm">
-              Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+              Side {table.getState().pagination.pageIndex + 1} af {table.getPageCount()}
             </div>
             <div className="ml-auto flex items-center gap-2 lg:ml-0">
               <Button
@@ -193,7 +193,7 @@ export function RecentLeadsTable({ data }: { data: RecentLeadRow[] }) {
                 onClick={() => table.setPageIndex(0)}
                 disabled={!table.getCanPreviousPage()}
               >
-                <span className="sr-only">Go to first page</span>
+                <span className="sr-only">Gaa til foerste side</span>
                 <ChevronsLeftIcon />
               </Button>
               <Button
@@ -203,7 +203,7 @@ export function RecentLeadsTable({ data }: { data: RecentLeadRow[] }) {
                 onClick={() => table.previousPage()}
                 disabled={!table.getCanPreviousPage()}
               >
-                <span className="sr-only">Go to previous page</span>
+                <span className="sr-only">Gaa til forrige side</span>
                 <ChevronLeftIcon />
               </Button>
               <Button
@@ -213,7 +213,7 @@ export function RecentLeadsTable({ data }: { data: RecentLeadRow[] }) {
                 onClick={() => table.nextPage()}
                 disabled={!table.getCanNextPage()}
               >
-                <span className="sr-only">Go to next page</span>
+                <span className="sr-only">Gaa til naeste side</span>
                 <ChevronRightIcon />
               </Button>
               <Button
@@ -223,7 +223,7 @@ export function RecentLeadsTable({ data }: { data: RecentLeadRow[] }) {
                 onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                 disabled={!table.getCanNextPage()}
               >
-                <span className="sr-only">Go to last page</span>
+                <span className="sr-only">Gaa til sidste side</span>
                 <ChevronsRightIcon />
               </Button>
             </div>

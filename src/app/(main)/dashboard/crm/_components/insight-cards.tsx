@@ -20,7 +20,7 @@ export function InsightCards() {
     <div className="grid grid-cols-1 gap-4 *:data-[slot=card]:shadow-xs sm:grid-cols-2 xl:grid-cols-5">
       <Card className="col-span-1 xl:col-span-2">
         <CardHeader>
-          <CardTitle>Leads by Source</CardTitle>
+          <CardTitle>Leads efter kilde</CardTitle>
         </CardHeader>
         <CardContent className="flex items-center gap-6">
           <ChartContainer config={leadsBySourceChartConfig} className="mx-auto aspect-square max-h-48 flex-1">
@@ -89,7 +89,7 @@ export function InsightCards() {
         </CardContent>
         <CardFooter className="gap-2">
           <Button size="sm" variant="outline" className="basis-1/2">
-            View Full Report
+            Vis fuld rapport
           </Button>
           <Button size="sm" variant="outline" className="basis-1/2">
             Download CSV
@@ -99,7 +99,7 @@ export function InsightCards() {
 
       <Card className="col-span-1 xl:col-span-3">
         <CardHeader>
-          <CardTitle>Project Revenue vs. Target</CardTitle>
+          <CardTitle>Projektomsaetning vs. maal</CardTitle>
         </CardHeader>
         <CardContent className="size-full max-h-52">
           <ChartContainer config={projectRevenueChartConfig} className="size-full">
@@ -142,7 +142,7 @@ export function InsightCards() {
           </ChartContainer>
         </CardContent>
         <CardFooter>
-          <p className="text-muted-foreground text-xs">Average progress: 78% · 2 projects above target</p>
+          <p className="text-muted-foreground text-xs">Gennemsnitlig fremdrift: 78% · 2 projekter over maal</p>
         </CardFooter>
       </Card>
     </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { addDays, format } from "date-fns";
+import { da } from "date-fns/locale";
 import { Home, Receipt, Sparkles, Zap } from "lucide-react";
 import { siApple, siMastercard } from "simple-icons";
 
@@ -16,30 +17,30 @@ const upcomingPayments = [
   {
     id: 1,
     icon: Home,
-    title: "Apartment Rent",
+    title: "Leje af lejlighed",
     amount: 1200,
-    date: `Due on ${format(addDays(now, 2), "do MMMM yyyy")}`,
+    date: `Forfalder ${format(addDays(now, 2), "d. MMMM yyyy", { locale: da })}`,
   },
   {
     id: 2,
     icon: Zap,
-    title: "Electricity Bill",
+    title: "Elregning",
     amount: 75,
-    date: `Due on ${format(addDays(now, 2), "do MMMM yyyy")}`,
+    date: `Forfalder ${format(addDays(now, 2), "d. MMMM yyyy", { locale: da })}`,
   },
   {
     id: 3,
     icon: Sparkles,
     title: "ChatGPT Plus",
     amount: 20,
-    date: `Due on ${format(addDays(now, 7), "do MMMM yyyy")}`,
+    date: `Forfalder ${format(addDays(now, 7), "d. MMMM yyyy", { locale: da })}`,
   },
   {
     id: 4,
     icon: Receipt,
-    title: "Credit Card Payment",
+    title: "Kreditkortbetaling",
     amount: 420,
-    date: `Due on ${format(addDays(now, 9), "do MMMM yyyy")}`,
+    date: `Forfalder ${format(addDays(now, 9), "d. MMMM yyyy", { locale: da })}`,
   },
 ];
 
@@ -47,8 +48,8 @@ export function CardOverview() {
   return (
     <Card className="shadow-xs">
       <CardHeader className="items-center">
-        <CardTitle>My Card</CardTitle>
-        <CardDescription>1 of 4 cards added · Overview of your primary card and upcoming payments</CardDescription>
+        <CardTitle>Mit kort</CardTitle>
+        <CardDescription>1 af 4 kort tilfoejet · Overblik over dit primære kort og kommende betalinger</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
@@ -71,7 +72,7 @@ export function CardOverview() {
                   </p>
                   <div className="flex gap-6">
                     <div>
-                      <p className="text-[10px] text-primary-foreground/80 uppercase tracking-wider">Valid Thru</p>
+                      <p className="text-[10px] text-primary-foreground/80 uppercase tracking-wider">Gyldig til</p>
                       <p className="font-mono text-primary-foreground/80 text-xs">06/30</p>
                     </div>
                     <div>
@@ -87,36 +88,36 @@ export function CardOverview() {
 
           <div className="space-y-2 text-sm">
             <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Card type</span>
-              <span className="font-medium tabular-nums">Virtual</span>
+              <span className="text-muted-foreground">Korttype</span>
+              <span className="font-medium tabular-nums">Virtuelt</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Billing cycle</span>
-              <span className="font-medium tabular-nums">21st monthly</span>
+              <span className="text-muted-foreground">Faktureringscyklus</span>
+              <span className="font-medium tabular-nums">21. hver maaned</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Card Limit</span>
-              <span className="font-medium tabular-nums">$62,000.00</span>
+              <span className="text-muted-foreground">Kortgraense</span>
+              <span className="font-medium tabular-nums">{formatCurrency(62000)}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Available Balance</span>
-              <span className="font-medium tabular-nums">$13,100.06</span>
+              <span className="text-muted-foreground">Tilgaengelig saldo</span>
+              <span className="font-medium tabular-nums">{formatCurrency(13100.06)}</span>
             </div>
           </div>
 
           <div className="space-y-1">
             <Button className="w-full" size="sm">
-              Manage Card
+              Administrer kort
             </Button>
 
             <Button className="w-full" variant="outline" size="sm">
-              Add Card
+              Tilfoej kort
             </Button>
           </div>
           <Separator />
 
           <div className="space-y-4">
-            <h6 className="text-muted-foreground text-sm uppercase">Upcoming Payments</h6>
+            <h6 className="text-muted-foreground text-sm uppercase">Kommende betalinger</h6>
 
             <div className="space-y-4">
               {upcomingPayments.map((transaction) => (
@@ -142,7 +143,7 @@ export function CardOverview() {
             </div>
 
             <Button className="w-full" size="sm" variant="outline">
-              View All Payments
+              Se alle betalinger
             </Button>
           </div>
         </div>

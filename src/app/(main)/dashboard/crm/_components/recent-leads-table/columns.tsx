@@ -26,7 +26,7 @@ export const recentLeadsColumns: ColumnDef<RecentLeadRow>[] = [
         <Checkbox
           checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")}
           onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Select all"
+          aria-label="Vaelg alle"
         />
       </div>
     ),
@@ -35,7 +35,7 @@ export const recentLeadsColumns: ColumnDef<RecentLeadRow>[] = [
         <Checkbox
           checked={row.getIsSelected()}
           onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
+          aria-label="Vaelg raekke"
         />
       </div>
     ),
@@ -49,13 +49,13 @@ export const recentLeadsColumns: ColumnDef<RecentLeadRow>[] = [
   },
   {
     accessorKey: "name",
-    header: "Name",
+    header: "Navn",
     cell: ({ row }) => row.original.name,
     enableHiding: false,
   },
   {
     accessorKey: "company",
-    header: "Company",
+    header: "Virksomhed",
     cell: ({ row }) => row.original.company,
   },
   {
@@ -65,12 +65,12 @@ export const recentLeadsColumns: ColumnDef<RecentLeadRow>[] = [
   },
   {
     accessorKey: "source",
-    header: "Source",
+    header: "Kilde",
     cell: ({ row }) => <Badge variant="outline">{row.original.source}</Badge>,
   },
   {
     accessorKey: "lastActivity",
-    header: "Last Activity",
+    header: "Sidste aktivitet",
     cell: ({ row }) => <span className="text-muted-foreground tabular-nums">{row.original.lastActivity}</span>,
   },
   {
@@ -80,18 +80,18 @@ export const recentLeadsColumns: ColumnDef<RecentLeadRow>[] = [
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon" className="flex size-8 text-muted-foreground">
             <EllipsisVertical />
-            <span className="sr-only">Open menu</span>
+            <span className="sr-only">Aabn menu</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-32">
           <DropdownMenuGroup>
-            <DropdownMenuItem>View</DropdownMenuItem>
-            <DropdownMenuItem>Assign</DropdownMenuItem>
-            <DropdownMenuItem>Archive</DropdownMenuItem>
+            <DropdownMenuItem>Vis</DropdownMenuItem>
+            <DropdownMenuItem>Tildel</DropdownMenuItem>
+            <DropdownMenuItem>Arkiver</DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+            <DropdownMenuItem variant="destructive">Slet</DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>

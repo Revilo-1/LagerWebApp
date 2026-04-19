@@ -15,7 +15,7 @@ export function PrimaryAccount() {
             <span className="grid size-7 place-content-center rounded-sm bg-muted">
               <WalletMinimal className="size-5" />
             </span>
-            Primary Account
+            Primaer konto
           </div>
         </CardTitle>
       </CardHeader>
@@ -23,15 +23,15 @@ export function PrimaryAccount() {
         <div className="space-y-0.5">
           <p className="font-medium text-xl tabular-nums">{formatCurrency(12450, { noDecimals: true })}</p>
 
-          <p className="text-muted-foreground text-xs">Available balance</p>
+          <p className="text-muted-foreground text-xs">Tilgaengelig saldo</p>
         </div>
 
         <div className="flex items-center gap-2">
           <Button className="flex-1" size="sm">
-            Pay
+            Betal
           </Button>
           <Button className="flex-1" size="sm" variant="outline">
-            Request
+            Anmod
           </Button>
         </div>
       </CardContent>

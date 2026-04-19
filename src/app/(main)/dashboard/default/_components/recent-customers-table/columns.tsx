@@ -33,7 +33,7 @@ export const recentCustomersColumns: ColumnDef<RecentCustomerRow>[] = [
         <Checkbox
           checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")}
           onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Select all customers on this page"
+          aria-label="Vaelg alle kunder pa denne side"
         />
       </div>
     ),
@@ -42,7 +42,7 @@ export const recentCustomersColumns: ColumnDef<RecentCustomerRow>[] = [
         <Checkbox
           checked={row.getIsSelected()}
           onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label={`Select ${row.original.name}`}
+          aria-label={`Vaelg ${row.original.name}`}
         />
       </div>
     ),
@@ -50,7 +50,7 @@ export const recentCustomersColumns: ColumnDef<RecentCustomerRow>[] = [
   },
   {
     accessorKey: "name",
-    header: "Customer",
+    header: "Kunde",
     cell: ({ row }) => (
       <div className="flex items-center gap-2">
         <span className="flex size-8 items-center justify-center rounded-md border bg-muted">
@@ -86,7 +86,7 @@ export const recentCustomersColumns: ColumnDef<RecentCustomerRow>[] = [
   },
   {
     accessorKey: "billing",
-    header: "Billing",
+    header: "Betaling",
     filterFn: "equalsString",
     cell: ({ row }) => (
       <Badge variant="outline" className="px-1.5 text-muted-foreground">
@@ -97,7 +97,7 @@ export const recentCustomersColumns: ColumnDef<RecentCustomerRow>[] = [
   },
   {
     accessorKey: "plan",
-    header: "Plan",
+    header: "Abonnement",
     cell: ({ row }) => <span className="text-sm">{row.original.plan}</span>,
   },
   {
@@ -114,7 +114,7 @@ export const recentCustomersColumns: ColumnDef<RecentCustomerRow>[] = [
   },
   {
     accessorKey: "joined",
-    header: "Joined",
+    header: "Oprettet",
     cell: ({ row }) => {
       const baseDate = parseISO(row.original.joined);
       const joinedAt = addMinutes(baseDate, 9 * 60 + (Number(row.original.id) % 12) * 17);
@@ -122,7 +122,7 @@ export const recentCustomersColumns: ColumnDef<RecentCustomerRow>[] = [
       return (
         <div className="grid gap-0.5">
           <span className="text-sm">{format(joinedAt, "do MMMM yyyy")}</span>
-          <span className="text-muted-foreground text-xs">at {format(joinedAt, "h:mm a")}</span>
+          <span className="text-muted-foreground text-xs">kl. {format(joinedAt, "h:mm a")}</span>
         </div>
       );
     },
